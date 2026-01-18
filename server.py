@@ -12,7 +12,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 ROOT_DIR = Path(__file__).resolve().parent
-STATIC_DIR = ROOT_DIR / "static"
+STATIC_DIR = ROOT_DIR / "docs"
 DATA_DIR = ROOT_DIR / "data"
 SPOTS_FILE = DATA_DIR / "spots.json"
 
@@ -183,8 +183,9 @@ class FlavorMapHandler(BaseHTTPRequestHandler):
 def main() -> None:
     _ensure_data_files()
 
-    host = os.environ.get("FLAVORMAP_HOST", "127.0.0.1")
-    port = int(os.environ.get("FLAVORMAP_PORT", "8000"))
+    # Many hosts (Render/Railway/etc.) provide PORT. Bind to 0.0.0.0 in that case.
+    port = int(os.environ.get("PORT") or os.environ.get("FLAVORMAP_PORT") or "8000")
+    host = os.environ.get("FLAVORMAP_HOST") or ("0.0.0.0" if os.environ.get("PORT") else "127.0.0.1")
 
     server = ThreadingHTTPServer((host, port), FlavorMapHandler)
     print(f"FlavorMap running on http://{host}:{port}")

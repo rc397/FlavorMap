@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlavorMap</title>
 
-    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="stylesheet" href="./assets/styles.css" />
 
     <!--
-      Note: This is a simple website scaffold (no bundler).
-      If you want an interactive map, you can optionally use Leaflet via CDN.
+      GitHub Pages friendly (static):
+      - Loads seed spots from ./data/spots.json
+      - If a local Python server is running, it will use /api/spots instead
     -->
     <link
       rel="stylesheet"
@@ -24,7 +25,7 @@
         <h1>FlavorMap</h1>
         <p class="subtitle">A crowdsourced map of local food favorites with emoji-based reviews.</p>
       </div>
-      <div class="pill">Website scaffold</div>
+      <div class="pill" id="modePill">Loading…</div>
     </header>
 
     <main class="layout">
@@ -84,6 +85,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="/assets/app.js"></script>
+    <script src="./assets/app.js"></script>
   </body>
 </html>
